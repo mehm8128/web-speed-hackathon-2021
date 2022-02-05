@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Helmet } from 'react-helmet';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
@@ -12,6 +12,8 @@ import { PostContainer } from '../PostContainer';
 import { TermContainer } from '../TermContainer';
 import { TimelineContainer } from '../TimelineContainer';
 import { UserProfileContainer } from '../UserProfileContainer';
+
+//const TermContainer = React.lazy(() => import('../../containers/TermContainer/TermContainer'));
 
 /** @type {React.VFC} */
 const AppContainer = () => {
@@ -41,6 +43,7 @@ const AppContainer = () => {
 
   return (
     <>
+      {/*<Suspense fallback={<div>読込中</div>}>*/}
       <AppPage
         activeUser={activeUser}
         onRequestOpenAuthModal={handleRequestOpenAuthModal}
@@ -59,6 +62,7 @@ const AppContainer = () => {
         <AuthModalContainer onRequestCloseModal={handleRequestCloseModal} onUpdateActiveUser={setActiveUser} />
       ) : null}
       {modalType === 'post' ? <NewPostModalContainer onRequestCloseModal={handleRequestCloseModal} /> : null}
+      {/*</Suspense>*/}
     </>
   );
 };
