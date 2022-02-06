@@ -9,11 +9,10 @@ import { AuthModalContainer } from '../AuthModalContainer';
 import { NewPostModalContainer } from '../NewPostModalContainer';
 import { NotFoundContainer } from '../NotFoundContainer';
 import { PostContainer } from '../PostContainer';
-import { TermContainer } from '../TermContainer';
 import { TimelineContainer } from '../TimelineContainer';
 import { UserProfileContainer } from '../UserProfileContainer';
 
-//const TermContainer = React.lazy(() => import('../../containers/TermContainer/TermContainer'));
+const TermContainer = React.lazy(() => import('../../containers/TermContainer/TermContainer'));
 
 /** @type {React.VFC} */
 const AppContainer = () => {
@@ -43,26 +42,26 @@ const AppContainer = () => {
 
   return (
     <>
-      {/*<Suspense fallback={<div>読込中</div>}>*/}
-      <AppPage
-        activeUser={activeUser}
-        onRequestOpenAuthModal={handleRequestOpenAuthModal}
-        onRequestOpenPostModal={handleRequestOpenPostModal}
-      >
-        <Routes>
-          <Route element={<TimelineContainer />} path="/" />
-          <Route element={<UserProfileContainer />} path="/users/:username" />
-          <Route element={<PostContainer />} path="/posts/:postId" />
-          <Route element={<TermContainer />} path="/terms" />
-          <Route element={<NotFoundContainer />} path="*" />
-        </Routes>
-      </AppPage>
+      <Suspense fallback={<div>読込中</div>}>
+        <AppPage
+          activeUser={activeUser}
+          onRequestOpenAuthModal={handleRequestOpenAuthModal}
+          onRequestOpenPostModal={handleRequestOpenPostModal}
+        >
+          <Routes>
+            <Route element={<TimelineContainer />} path="/" />
+            <Route element={<UserProfileContainer />} path="/users/:username" />
+            <Route element={<PostContainer />} path="/posts/:postId" />
+            <Route element={<TermContainer />} path="/terms" />
+            <Route element={<NotFoundContainer />} path="*" />
+          </Routes>
+        </AppPage>
 
-      {modalType === 'auth' ? (
-        <AuthModalContainer onRequestCloseModal={handleRequestCloseModal} onUpdateActiveUser={setActiveUser} />
-      ) : null}
-      {modalType === 'post' ? <NewPostModalContainer onRequestCloseModal={handleRequestCloseModal} /> : null}
-      {/*</Suspense>*/}
+        {modalType === 'auth' ? (
+          <AuthModalContainer onRequestCloseModal={handleRequestCloseModal} onUpdateActiveUser={setActiveUser} />
+        ) : null}
+        {modalType === 'post' ? <NewPostModalContainer onRequestCloseModal={handleRequestCloseModal} /> : null}
+      </Suspense>
     </>
   );
 };
