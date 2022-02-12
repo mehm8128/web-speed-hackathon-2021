@@ -1,5 +1,4 @@
 import React, { Suspense } from 'react';
-import { Helmet } from 'react-helmet';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 import { AppPage } from '../../components/application/AppPage';
@@ -32,12 +31,14 @@ const AppContainer = () => {
   const handleRequestOpenPostModal = React.useCallback(() => setModalType('post'), []);
   const handleRequestCloseModal = React.useCallback(() => setModalType('none'), []);
 
+  React.useEffect(() => {
+    if (isLoading) {
+      document.title = '読込中 - CAwitter';
+    }
+  }, [isLoading]);
+
   if (isLoading) {
-    return (
-      <Helmet>
-        <title>読込中 - CAwitter</title>
-      </Helmet>
-    );
+    return null;
   }
 
   return (
