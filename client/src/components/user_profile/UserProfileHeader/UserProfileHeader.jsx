@@ -1,5 +1,6 @@
 import FastAverageColor from 'fast-average-color';
 import React from 'react';
+import { dateFormatter } from '../../../utils/dateFormatter';
 
 import { getProfileImagePath } from '../../../utils/get_path';
 import { FontAwesomeIcon } from '../../foundation/FontAwesomeIcon';
@@ -43,7 +44,7 @@ const UserProfileHeader = ({ user }) => {
             <FontAwesomeIcon iconType="calendar-alt" styleType="regular" />
           </span>
           <span>
-            <time dateTime={new Date(post.createdAt).toISOString()}>{formatDate(post.createdAt)}</time>
+            <time dateTime={new Date(post.createdAt).toISOString()}>{dateFormatter(post.createdAt)}</time>
             からサービスを利用しています
           </span>
         </p>

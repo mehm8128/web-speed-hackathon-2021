@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { dateFormatter } from '../../../utils/dateFormatter';
 import { getProfileImagePath } from '../../../utils/get_path';
 
 /**
@@ -36,7 +36,7 @@ const CommentItem = ({ comment }) => {
           </p>
           <p className="text-gray-800 text-sm leading-relaxed">{comment.text}</p>
           <p className="text-gray-500 text-xs">
-            <time dateTime={new Date(post.createdAt).toISOString()}>{formatDate(post.createdAt)}</time>
+            <time dateTime={new Date(post.createdAt).toISOString()}>{dateFormatter(post.createdAt)}</time>
           </p>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { dateFormatter } from '../../../utils/dateFormatter';
 
 import { getProfileImagePath } from '../../../utils/get_path';
 import { ImageArea } from '../../post/ImageArea';
@@ -61,7 +62,7 @@ const PostItem = ({ post }) => {
           ) : null}
           <p className="mt-2 text-sm sm:mt-4">
             <Link className="text-gray-500 hover:underline" to={`/posts/${post.id}`}>
-              <time dateTime={new Date(post.createdAt).toISOString()}>{formatDate(post.createdAt)}</time>
+              <time dateTime={new Date(post.createdAt).toISOString()}>{dateFormatter(post.createdAt)}</time>
             </Link>
           </p>
         </div>

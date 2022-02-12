@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { dateFormatter } from '../../../utils/dateFormatter';
 
 import { getProfileImagePath } from '../../../utils/get_path';
 import { ImageArea } from '../../post/ImageArea';
@@ -69,7 +70,7 @@ const TimelineItem = ({ post }) => {
             </Link>
             <span className="pr-1 text-gray-500">-</span>
             <Link className="pr-1 text-gray-500 hover:underline" to={`/posts/${post.id}`}>
-              <time dateTime={new Date(post.createdAt).toISOString()}>{formatDate(post.createdAt)}</time>
+              <time dateTime={new Date(post.createdAt).toISOString()}>{dateFormatter(post.createdAt)}</time>
             </Link>
           </p>
           <p className="text-gray-800 leading-relaxed">{post.text}</p>
